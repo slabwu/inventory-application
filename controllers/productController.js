@@ -1,7 +1,7 @@
 const db = require('../db/queries')
 
 const getAddProduct = async (req, res) => {
-    res.render('products')
+    res.render('addProduct')
 }
 
 const postAddProduct = async (req, res) => {
