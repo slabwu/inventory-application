@@ -5,7 +5,9 @@ const getAddProduct = async (req, res) => {
 }
 
 const postAddProduct = async (req, res) => {
-    res.render('products')
+    let form = req.body
+    await db.addProduct(form.name, form.emoji, form.price, form.quantity, form.categoryId)
+    res.redirect('/products')
 }
 
 const getProducts = async (req, res) => {
