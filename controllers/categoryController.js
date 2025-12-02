@@ -1,5 +1,5 @@
 const getCategories = async (req, res) => {
-    res.send('Categories')
+    res.render('categories')
 }
 
 module.exports = {

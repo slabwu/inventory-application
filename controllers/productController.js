@@ -1,5 +1,5 @@
 const getProducts = async (req, res) => {
-    res.send('Products')
+    res.render('products')
 }
 
 module.exports = {
