@@ -1,3 +1,5 @@
+const db = require('../db/queries')
+
 const getAddProduct = async (req, res) => {
     res.render('products')
 }
@@ -7,7 +9,8 @@ const postAddProduct = async (req, res) => {
 }
 
 const getProducts = async (req, res) => {
-    res.render('products')
+    let products = await db.getProducts()
+    res.render('products', { products: products })
 }
 
 const getProduct = async (req, res) => {

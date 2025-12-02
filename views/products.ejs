@@ -5,5 +5,18 @@
     <body>
         <%- include('header') %>
         <h2>Products</h2>
+        <section class="productsList">
+            <% if (locals.products ) { %>
+                <% products.forEach(product => { %>
+                    <div class="productCard">
+                        <div class="emoji"><%= product.emoji %></div>
+                        <div class="name"><%= product.name %></div>
+                        <div class="price"><%= product.price %></div>
+                        <div class="quantity"><%= product.quantity %></div>
+                        <div class="category"><%= product.categoryid %></div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </section>
     </body>
 </html>
