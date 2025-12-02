@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS categories (
 CREATE TABLE IF NOT EXISTS products (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR ( 30 ),
-  emoji VARCHAR ( 1 ),
+  emoji TEXT,
   price DECIMAL(5, 2),
   quantity INTEGER,
   categoryId INTEGER,
