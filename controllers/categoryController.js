@@ -1,3 +1,5 @@
+const db = require('../db/queries')
+
 const getAddCategory = async (req, res) => {
     res.render('categories')
 }
@@ -7,7 +9,8 @@ const postAddCategory = async (req, res) => {
 }
 
 const getCategories = async (req, res) => {
-    res.render('categories')
+    let categories = await db.getCategories()
+    res.render('categories', { categories: categories })
 }
 
 const getCategory = async (req, res) => {

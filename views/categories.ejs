@@ -5,5 +5,12 @@
     <body>
         <%- include('header') %>
         <h2>Categories</h2>
+        <ul class="productsList">
+            <% if (locals.categories ) { %>
+                <% categories.forEach(category => { %>
+                    <li class="category"><%= category.name %></li>
+                <% }) %>
+            <% } %>
+        </ul>
     </body>
 </html>
