@@ -14,16 +14,15 @@ const getCategories = async (req, res) => {
     res.render('categories', { categories: categories })
 }
 
-const getCategory = async (req, res) => {
-    res.render('categories')
-}
-
 const getEditCategory = async (req, res) => {
-    res.render('categories')
+    let category = await db.getCategory(req.params.categoryId)
+    res.render('editCategory', { category: category })
 }
 
 const postEditCategory = async (req, res) => {
-    res.render('categories')
+    console.log(req.body.name, req.params.categoryId)
+    await db.editCategory(req.body.name, req.params.categoryId)
+    res.redirect('/categories')
 }
 
 const postDeleteCategory = async (req, res) => {
@@ -34,7 +33,6 @@ module.exports = {
     getAddCategory,
     postAddCategory,
     getCategories,
-    getCategory,
     getEditCategory,
     postEditCategory,
     postDeleteCategory
