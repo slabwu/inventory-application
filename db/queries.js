@@ -10,9 +10,15 @@ async function getProduct(id) {
     return rows
 }
 
-async function addProduct(name, emoji, price, quantity, categoryId) {
+async function addProduct(product) {
     await pool.query('INSERT INTO products (name, emoji, price, quantity, categoryid) VALUES ($1,$2,$3,$4,$5)', 
-        [name, emoji, price, quantity, categoryId]
+        [product.name, product.emoji, product.price, product.quantity, product.categoryId]
+    )
+}
+
+async function editProduct(product) {
+    await pool.query('UPDATE products SET name = $1, emoji = $2, price = $3, quantity = $4, categoryid = $5 WHERE id = $6', 
+        [product.name, product.emoji, product.price, product.quantity, product.categoryId, product.id]
     )
 }
 
@@ -25,5 +31,6 @@ module.exports = {
     getProducts,
     getProduct,
     addProduct,
+    editProduct,
     getCategories
 }

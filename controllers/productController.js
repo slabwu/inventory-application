@@ -6,8 +6,7 @@ const getAddProduct = async (req, res) => {
 }
 
 const postAddProduct = async (req, res) => {
-    let form = req.body
-    await db.addProduct(form.name, form.emoji, form.price, form.quantity, form.categoryId)
+    await db.addProduct(req.body)
     res.redirect('/products')
 }
 
@@ -28,7 +27,8 @@ const getEditProduct = async (req, res) => {
 }
 
 const postEditProduct = async (req, res) => {
-    res.render('products')
+    await db.editProduct({ ...req.body, id: req.params.productId})
+    res.redirect(`/products/${req.params.productId}`)
 }
 
 const postDeleteProduct = async (req, res) => {
