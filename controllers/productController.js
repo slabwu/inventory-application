@@ -22,7 +22,9 @@ const getProduct = async (req, res) => {
 }
 
 const getEditProduct = async (req, res) => {
-    res.render('products')
+    let [ product ] = await db.getProduct(req.params.productId)
+    let categories = await db.getCategories()
+    res.render('editProduct', { product: product, categories: categories })
 }
 
 const postEditProduct = async (req, res) => {
