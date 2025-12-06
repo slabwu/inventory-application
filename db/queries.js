@@ -19,12 +19,12 @@ async function getInventoryInfo() {
 }
 
 async function getProducts() {
-    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p JOIN categories c ON p.categoryid = c.id')
+    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id')
     return rows
 }
 
 async function getProduct(id) {
-    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p JOIN categories c ON p.categoryid = c.id WHERE p.id = $1', [id])
+    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id WHERE p.id = $1', [id])
     return rows[0]
 }
 

@@ -11,7 +11,7 @@
         <div>Category Breakdown:</div>
         <ul>
             <% for (const key in inventory.categories) { %>
-                <li><%= inventory.categories[key] %> <%= key %></li>
+                <li><%= inventory.categories[key] %> <%= key == "null" ? "uncategorised items" : key.toLowerCase() %></li>
             <% } %>
         </ul>
         <a href="/products">

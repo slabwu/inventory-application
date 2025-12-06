@@ -16,10 +16,9 @@
             <input type="text" name="quantity" value="<%= product.quantity %>">
             <label for="categoryId">Category</label>
             <select name="categoryId">
-                <option value="" disabled>Select</option>
+                <option value="" disabled <%= product.category ? "" : "selected" %>>Select</option>
                 <% categories.forEach(category => { %>
-                    <% let selected = category.name == product.category ? "selected" : "" %>
-                    <option value="<%= category.id %>" <%= selected %>><%= category.name %></option>
+                    <option value="<%= category.id %>" <%= category.name == product.category ? "selected" : "" %>><%= category.name %></option>
                 <% }) %>
             </select>
             <button>Submit</button>
