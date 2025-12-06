@@ -16,7 +16,8 @@ const getProducts = async (req, res) => {
 }
 
 const getProduct = async (req, res) => {
-    res.render('products')
+    let [ product ] = await db.getProduct(req.params.productId)
+    res.render('product', { product: product })
 }
 
 const getEditProduct = async (req, res) => {
