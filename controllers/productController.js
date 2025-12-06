@@ -11,8 +11,14 @@ const postAddProduct = async (req, res) => {
 }
 
 const getProducts = async (req, res) => {
-    let products = await db.getProducts()
-    res.render('products', { products: products })
+    let search = req.query.search
+    let products
+    if (search) {
+        products = await db.findProducts(search)
+    } else {
+        products = await db.getProducts()
+    }
+    res.render('products', { products: products, search: search })
 }
 
 const getProduct = async (req, res) => {

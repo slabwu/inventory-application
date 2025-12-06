@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
-        <%- include('header') %>
+        <%- include('header', { search: search }) %>
         <h2><%= product.name %></h2>
         <div class="productCard">
             <div class="emoji"><%= product.emoji %></div>

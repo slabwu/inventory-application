@@ -6,7 +6,7 @@
         <%- include('header') %>
         <h2>Products</h2>
         <section class="productsList">
-            <% if (locals.products ) { %>
+            <% if (locals.products.length ) { %>
                 <% products.forEach(product => { %>
                     <a href="/products/<%= product.id %>">
                         <div class="productCard">
@@ -20,8 +20,15 @@
                 <% }) %>
             <% } %>
         </section>
-        <a href="/products/add">
-            <button>Add product</button>
-        </a>
+        <% if ( locals.products.length ) { %>
+            <a href="/products/add">
+                <button>Add product</button>
+            </a>
+        <% } else { %>
+             <div>No products found.</div>
+            <a href="/products">
+                <button>Back</button>
+            </a>
+        <% } %>
     </body>
 </html>

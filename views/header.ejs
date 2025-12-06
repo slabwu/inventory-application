@@ -3,5 +3,9 @@
     <a href="/">Home</a>
     <a href="/products">Products</a>
     <a href="/categories">Categories</a>
+    <form action="/products" method="GET">
+        <input type="text" name="search" placeholder="Search for a product" value="<%= locals.search ? search : "" %>">
+        <button>Search</button>
+    </form>
 </head>
 <hr>

@@ -23,6 +23,11 @@ async function getProducts() {
     return rows
 }
 
+async function findProducts(search) {
+    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id WHERE p.name ILIKE $1', [`%${search}%`])
+    return rows
+}
+
 async function getProduct(id) {
     const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id WHERE p.id = $1', [id])
     return rows[0]
@@ -69,6 +74,7 @@ async function deleteCategory(id) {
 module.exports = {
     getInventoryInfo,
     getProducts,
+    findProducts,
     getProduct,
     addProduct,
     editProduct,
