@@ -1,5 +1,23 @@
 const pool = require('./pool')
 
+async function getInventoryInfo() {
+    const products = await getProducts()
+    let inventory = {
+        products: products.length,
+        quantity: 0,
+        value: 0,
+        categories: {}
+    }
+
+    products.forEach(product => {
+        inventory.quantity += Number(product.quantity)
+        inventory.value += Number(product.price * product.quantity)
+        inventory.categories[product.category] = (inventory.categories[product.category] ?? 0) + Number(product.quantity)
+    })
+
+    return inventory
+}
+
 async function getProducts() {
     const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p JOIN categories c ON p.categoryid = c.id')
     return rows
@@ -7,7 +25,7 @@ async function getProducts() {
 
 async function getProduct(id) {
     const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p JOIN categories c ON p.categoryid = c.id WHERE p.id = $1', [id])
-    return rows
+    return rows[0]
 }
 
 async function addProduct(product) {
@@ -32,6 +50,7 @@ async function getCategories() {
 }
 
 module.exports = {
+    getInventoryInfo,
     getProducts,
     getProduct,
     addProduct,

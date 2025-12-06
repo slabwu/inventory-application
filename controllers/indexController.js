@@ -1,5 +1,8 @@
+const db = require('../db/queries')
+
 const getIndex = async (req, res) => {
-    res.render('index')
+    let inventory = await db.getInventoryInfo()
+    res.render('index', { inventory: inventory })
 }
 
 module.exports = {

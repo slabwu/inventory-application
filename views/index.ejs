@@ -4,6 +4,21 @@
     </head>
     <body>
         <%- include('header') %>
-        <h2>Home</h2>
+        <h2>Overview</h2>
+        <div><%= inventory.products %> products in inventory</div>
+        <div><%= inventory.quantity %> items in total</div>
+        <div>$<%= inventory.value %> worth in valuation</div>
+        <div>Category Breakdown:</div>
+        <ul>
+            <% for (const key in inventory.categories) { %>
+                <li><%= inventory.categories[key] %> <%= key %></li>
+            <% } %>
+        </ul>
+        <a href="/products">
+            <button>View Products</button>
+        </a>
+        <a href="/categories">
+            <button>View Categories</button>
+        </a>
     </body>
 </html>
