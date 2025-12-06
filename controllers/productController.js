@@ -1,7 +1,8 @@
 const db = require('../db/queries')
 
 const getAddProduct = async (req, res) => {
-    res.render('addProduct')
+    let categories = await db.getCategories()
+    res.render('addProduct', { categories: categories})
 }
 
 const postAddProduct = async (req, res) => {

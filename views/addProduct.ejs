@@ -14,8 +14,13 @@
             <input type="text" name="price">
             <label for="quantity">Quantity</label>
             <input type="text" name="quantity">
-            <label for="categoryId">Category ID</label>
-            <input type="number" name="categoryId">
+            <label for="categoryId">Category</label>
+            <select name="categoryId">
+                <option value="" disabled selected>Select</option>
+                <% categories.forEach(category => { %>
+                    <option value="<%= category.id %>"><%= category.name %></option>
+                <% }) %>
+            </select>
             <button>Submit</button>
         </form>
         <a href="/products">
