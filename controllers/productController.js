@@ -32,7 +32,8 @@ const postEditProduct = async (req, res) => {
 }
 
 const postDeleteProduct = async (req, res) => {
-    res.render('products')
+    await db.deleteProduct(req.params.productId)
+    res.redirect('/products')
 }
 
 module.exports = {

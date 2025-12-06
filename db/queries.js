@@ -22,6 +22,10 @@ async function editProduct(product) {
     )
 }
 
+async function deleteProduct(id) {
+    await pool.query('DELETE FROM products WHERE id = $1', [id])
+}
+
 async function getCategories() {
     const { rows } = await pool.query('SELECT * FROM categories')
     return rows
@@ -32,5 +36,6 @@ module.exports = {
     getProduct,
     addProduct,
     editProduct,
+    deleteProduct,
     getCategories
 }

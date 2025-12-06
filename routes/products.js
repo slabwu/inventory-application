@@ -8,6 +8,6 @@ product.get('/', productController.getProducts)
 product.get('/:productId', productController.getProduct)
 product.get('/:productId/edit', productController.getEditProduct)
 product.post('/:productId/edit', productController.postEditProduct)
-product.post('/delete', productController.postDeleteProduct)
+product.post('/:productId/delete', productController.postDeleteProduct)
 
 module.exports = product

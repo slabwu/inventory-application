@@ -27,5 +27,8 @@
         <a href="/products/<%= product.id %>">
             <button>Back</button>
         </a>
+        <form action="/products/<%= product.id %>/delete" method="POST">
+            <button onClick="() => alert('Are you sure you want to delete this item?')">Delete</button>
+        </form>
     </body>
 </html>
