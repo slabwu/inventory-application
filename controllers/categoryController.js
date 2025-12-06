@@ -20,13 +20,13 @@ const getEditCategory = async (req, res) => {
 }
 
 const postEditCategory = async (req, res) => {
-    console.log(req.body.name, req.params.categoryId)
     await db.editCategory(req.body.name, req.params.categoryId)
     res.redirect('/categories')
 }
 
 const postDeleteCategory = async (req, res) => {
-    res.render('categories')
+    await db.deleteCategory(req.params.categoryId)
+    res.redirect('/categories')
 }
 
 module.exports = {

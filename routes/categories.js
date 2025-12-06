@@ -7,6 +7,6 @@ category.post('/add', categoryController.postAddCategory)
 category.get('/', categoryController.getCategories)
 category.get('/:categoryId/edit', categoryController.getEditCategory)
 category.post('/:categoryId/edit', categoryController.postEditCategory)
-category.post('/delete', categoryController.postDeleteCategory)
+category.post('/:categoryId/delete', categoryController.postDeleteCategory)
 
 module.exports = category

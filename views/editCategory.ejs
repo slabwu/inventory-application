@@ -11,6 +11,9 @@
             <input type="text" name="name" value="<%= category.name %>">
             <button>Submit</button>
         </form>
+        <form action="/categories/<%= category.id %>/delete" method="POST">
+            <button>Delete</button>
+        </form>
         <a href="/categories">
             <button>Back</button>
         </a>
