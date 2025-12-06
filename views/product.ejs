@@ -1,21 +1,25 @@
 <html>
     <head>
         <link rel="stylesheet" href="/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <%- include('header', { search: search }) %>
-        <h2><%= product.name %></h2>
-        <div class="productCard">
-            <div class="emoji"><%= product.emoji %></div>
-            <div class="price"><%= product.price %></div>
-            <div class="quantity"><%= product.quantity %></div>
-            <div class="category"><%= product.category ? product.category : 'Uncategorised' %></div>
-        </div>
-        <a href="/products/<%= product.id %>/edit">
-            <button>Edit</button>
-        </a>
-        <a href="/products">
-            <button>Back</button>
-        </a>
+        <%- include('header') %>
+        <main>
+            <h2><%= product.name %></h2>
+                <div class="productCard">
+                    <div class="emoji"><%= product.emoji %></div>
+                    <div class="name"><%= product.name %></div>
+                    <div class="category"><%= product.category ? product.category : 'Uncategorised' %></div>
+                    <div class="details">
+                        <div class="price">$<%= product.price %></div>
+                        <div class="quantity"><%= product.quantity %> QTY</div>
+                    </div>
+                </div>
+            <a href="/products/<%= product.id %>/edit" class="button">
+                <span class="material-icons">edit</span>
+            </a>
+            <a href="/products" class="button">Back</a>
+        </main>
     </body>
 </html>

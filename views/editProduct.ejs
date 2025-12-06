@@ -1,33 +1,34 @@
 <html>
     <head>
         <link rel="stylesheet" href="/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <%- include('header') %>
-        <h2>Edit product</h2>
-        <form action="/products/<%= product.id %>/edit" method="POST">
-            <label for="name">Name</label>
-            <input type="text" name="name" value="<%= product.name %>">
-            <label for="emoji">Emoji</label>
-            <input type="text" name="emoji" value="<%= product.emoji %>">
-            <label for="price">Price</label>
-            <input type="text" name="price" value="<%= product.price %>">
-            <label for="quantity">Quantity</label>
-            <input type="text" name="quantity" value="<%= product.quantity %>">
-            <label for="categoryId">Category</label>
-            <select name="categoryId">
-                <option value="" disabled <%= product.category ? "" : "selected" %>>Select</option>
-                <% categories.forEach(category => { %>
-                    <option value="<%= category.id %>" <%= category.name == product.category ? "selected" : "" %>><%= category.name %></option>
-                <% }) %>
-            </select>
-            <button>Submit</button>
-        </form>
-        <a href="/products/<%= product.id %>">
-            <button>Back</button>
-        </a>
-        <form action="/products/<%= product.id %>/delete" method="POST">
-            <button onClick="() => alert('Are you sure you want to delete this item?')">Delete</button>
-        </form>
+        <main>
+            <h2>Edit product</h2>
+            <form action="/products/<%= product.id %>/edit" method="POST" class="form">
+                <label for="name">Name</label>
+                <input type="text" name="name" value="<%= product.name %>">
+                <label for="emoji">Emoji</label>
+                <input type="text" name="emoji" value="<%= product.emoji %>">
+                <label for="price">Price</label>
+                <input type="text" name="price" value="<%= product.price %>">
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity" value="<%= product.quantity %>">
+                <label for="categoryId">Category</label>
+                <select name="categoryId">
+                    <option value="" disabled <%= product.category ? "" : "selected" %>>Select</option>
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>" <%= category.name == product.category ? "selected" : "" %>><%= category.name %></option>
+                    <% }) %>
+                </select>
+                <button>Submit</button>
+            </form>
+            <a href="/products/<%= product.id %>" class="button">Back</a>
+            <form action="/products/<%= product.id %>/delete" method="POST">
+                <button onClick="() => alert('Are you sure you want to delete this item?')">Delete</button>
+            </form>
+        </main>
     </body>
 </html>

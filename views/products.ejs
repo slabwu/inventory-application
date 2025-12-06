@@ -1,34 +1,40 @@
 <html>
     <head>
         <link rel="stylesheet" href="/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <%- include('header') %>
-        <h2>Products</h2>
-        <section class="productsList">
-            <% if (locals.products.length ) { %>
-                <% products.forEach(product => { %>
-                    <a href="/products/<%= product.id %>">
-                        <div class="productCard">
-                            <div class="emoji"><%= product.emoji %></div>
-                            <div class="name"><%= product.name %></div>
-                            <div class="price"><%= product.price %></div>
-                            <div class="quantity"><%= product.quantity %></div>
-                            <div class="category"><%= product.category ? product.category : 'Uncategorised' %></div>
-                        </div>
-                    </a>
-                <% }) %>
+        <%- include('header', { search: search }) %>
+        <main>
+            <div class="productHeader">
+                <h2>Products</h2>
+                <a href="/products/add" class="button iconButton">
+                    <span class="material-icons">add</span>
+                </a>
+            </div>
+            <section class="productsList">
+                <% if (locals.products.length ) { %>
+                    <% products.forEach(product => { %>
+                        <a href="/products/<%= product.id %>">
+                            <div class="productCard">
+                                <div class="emoji"><%= product.emoji %></div>
+                                <div class="name"><%= product.name %></div>
+                                <div class="category"><%= product.category ? product.category : 'Uncategorised' %></div>
+                                <div class="details">
+                                    <div class="price">$<%= product.price %></div>
+                                    <div class="quantity"><%= product.quantity %> QTY</div>
+                                </div>
+                            </div>
+                        </a>
+                    <% }) %>
+                <% } %>
+            </section>
+            <% if ( locals.products.length ) { %>
+                <a href="/products/add" class="button">Add product</a>
+            <% } else { %>
+                 <div>No products found.</div>
+                <a href="/products" class="button">Back</a>
             <% } %>
-        </section>
-        <% if ( locals.products.length ) { %>
-            <a href="/products/add">
-                <button>Add product</button>
-            </a>
-        <% } else { %>
-             <div>No products found.</div>
-            <a href="/products">
-                <button>Back</button>
-            </a>
-        <% } %>
+        </main>
     </body>
 </html>

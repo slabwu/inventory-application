@@ -1,24 +1,23 @@
 <html>
     <head>
         <link rel="stylesheet" href="/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <%- include('header') %>
-        <h2>Overview</h2>
-        <div><%= inventory.products %> products in inventory</div>
-        <div><%= inventory.quantity %> items in total</div>
-        <div>$<%= inventory.value %> worth in valuation</div>
-        <div>Category Breakdown:</div>
-        <ul>
-            <% for (const key in inventory.categories) { %>
-                <li><%= inventory.categories[key] %> <%= key == "null" ? "uncategorised items" : key.toLowerCase() %></li>
-            <% } %>
-        </ul>
-        <a href="/products">
-            <button>View Products</button>
-        </a>
-        <a href="/categories">
-            <button>View Categories</button>
-        </a>
+        <main>
+            <h2>Overview</h2>
+            <div><%= inventory.products %> products in inventory</div>
+            <div><%= inventory.quantity %> items in total</div>
+            <div>$<%= inventory.value %> worth in valuation</div>
+            <div>Category Breakdown:</div>
+            <ul>
+                <% for (const key in inventory.categories) { %>
+                    <li><%= inventory.categories[key] %> <%= key == "null" ? "uncategorised items" : key.toLowerCase() %></li>
+                <% } %>
+            </ul>
+            <a href="/products" class="button">View Products</a>
+            <a href="/categories" class="button">View Categories</a>
+        </main>
     </body>
 </html>

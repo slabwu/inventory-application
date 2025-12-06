@@ -1,24 +1,27 @@
 <html>
     <head>
         <link rel="stylesheet" href="/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <%- include('header') %>
-        <h2>Categories</h2>
-        <ul class="productsList">
-            <% if (locals.categories ) { %>
-                <% categories.forEach(category => { %>
-                    <li class="category">
-                        <%= category.name %>
-                        <a href="/categories/<%= category.id %>/edit">
-                            <button>Edit</button>
-                        </a>
-                    </li>
-                <% }) %>
-            <% } %>
-        </ul>
-        <a href="/categories/add">
-            <button>Add category</button>
-        </a>
+        <main>
+            <h2>Categories</h2>
+            <section class="categoriesList">
+                <% if (locals.categories ) { %>
+                    <% categories.forEach(category => { %>
+                        <div class="category">
+                            <div><%= category.name %></div>
+                            <a href="/categories/<%= category.id %>/edit">
+                                <button class="iconButton">
+                                    <span class="material-icons">edit</span>
+                                </button>
+                            </a>
+                        </div>
+                    <% }) %>
+                <% } %>
+            </section>
+            <a href="/categories/add" class="button">Add category</a>
+        </main>
     </body>
 </html>

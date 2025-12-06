@@ -1,30 +1,31 @@
 <html>
     <head>
         <link rel="stylesheet" href="/styles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <%- include('header') %>
-        <h2>Add a new product</h2>
-        <form action="/products/add" method="POST">
-            <label for="name">Name</label>
-            <input type="text" name="name">
-            <label for="emoji">Emoji</label>
-            <input type="text" name="emoji">
-            <label for="price">Price</label>
-            <input type="text" name="price">
-            <label for="quantity">Quantity</label>
-            <input type="text" name="quantity">
-            <label for="categoryId">Category</label>
-            <select name="categoryId">
-                <option value="" disabled selected>Select</option>
-                <% categories.forEach(category => { %>
-                    <option value="<%= category.id %>"><%= category.name %></option>
-                <% }) %>
-            </select>
-            <button>Submit</button>
-        </form>
-        <a href="/products">
-            <button>Back</button>
-        </a>
+        <main>
+            <h2>Add a new product</h2>
+            <form action="/products/add" method="POST">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+                <label for="emoji">Emoji</label>
+                <input type="text" name="emoji">
+                <label for="price">Price</label>
+                <input type="text" name="price">
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity">
+                <label for="categoryId">Category</label>
+                <select name="categoryId">
+                    <option value="" disabled selected>Select</option>
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category.id %>"><%= category.name %></option>
+                    <% }) %>
+                </select>
+                <button>Submit</button>
+            </form>
+            <a href="/products" class="button">Back</a>
+        </main>
     </body>
 </html>
