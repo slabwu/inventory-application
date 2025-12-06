@@ -49,6 +49,10 @@ async function getCategories() {
     return rows
 }
 
+async function addCategory(name) {
+    await pool.query('INSERT INTO categories (name) VALUES ($1)', [name])
+}
+
 module.exports = {
     getInventoryInfo,
     getProducts,
@@ -56,5 +60,6 @@ module.exports = {
     addProduct,
     editProduct,
     deleteProduct,
-    getCategories
+    getCategories,
+    addCategory
 }
