@@ -1,22 +1,6 @@
 const db = require('../db/queries')
 const { body, validationResult, matchedData } = require("express-validator")
 
-const getAddProduct = async (req, res) => {
-    let categories = await db.getCategories()
-    res.render('addProduct', { categories: categories})
-}
-
-const addProduct = async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        let categories = await db.getCategories()
-        let fields = matchedData(req, { onlyValidData: false })
-        return res.status(400).render('addProduct', { errors: errors.mapped(), categories: categories, fields: fields })
-    }
-    await db.addProduct(matchedData(req))
-    res.redirect('/products')
-}
-
 const validateUser = [
     body('name').trim()
         .notEmpty().withMessage('Name is required.')
@@ -34,6 +18,22 @@ const validateUser = [
     body('categoryId').trim()
         .notEmpty().withMessage('Category is required.')
 ]
+
+const getAddProduct = async (req, res) => {
+    let categories = await db.getCategories()
+    res.render('addProduct', { categories: categories})
+}
+
+const addProduct = async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let categories = await db.getCategories()
+        let fields = matchedData(req, { onlyValidData: false })
+        return res.status(400).render('addProduct', { errors: errors.mapped(), categories: categories, fields: fields })
+    }
+    await db.addProduct(matchedData(req))
+    res.redirect('/products')
+}
 
 const postAddProduct = [ validateUser, addProduct ]
 
@@ -91,10 +91,19 @@ const getEditProduct = async (req, res) => {
     res.render('editProduct', { product: product, categories: categories })
 }
 
-const postEditProduct = async (req, res) => {
+const editProduct = async (req, res) => {
+    let product = await db.getProduct(req.params.productId)
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let categories = await db.getCategories()
+        let fields = matchedData(req, { onlyValidData: false })
+        return res.status(400).render('editProduct', { errors: errors.mapped(), categories: categories, fields: fields, product: product })
+    }
     await db.editProduct({ ...req.body, id: req.params.productId})
     res.redirect(`/products/${req.params.productId}`)
 }
+
+const postEditProduct = [ validateUser, editProduct ]
 
 const postDeleteProduct = async (req, res) => {
     await db.deleteProduct(req.params.productId)

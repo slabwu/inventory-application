@@ -6,28 +6,43 @@
     <body>
         <%- include('header') %>
         <main>
-            <h2>Edit product</h2>
-            <form action="/products/<%= product.id %>/edit" method="POST" class="form">
+            <h2>🔧 Edit product</h2>
+            <form action="/products/<%= product.id %>/edit" method="POST" class="main">
                 <label for="name">Name</label>
-                <input type="text" name="name" value="<%= product.name %>">
+                <input type="text" name="name" value="<%= locals.fields ? fields.name : product.name %>">
+                <div class="error"><%= locals.errors && "name" in locals.errors ? errors.name.msg : "" %></div>
+
                 <label for="emoji">Emoji</label>
-                <input type="text" name="emoji" value="<%= product.emoji %>">
+                <input type="text" name="emoji" value="<%= locals.fields ? fields.emoji : product.emoji %>">
+                <div class="error"><%= locals.errors && "emoji" in locals.errors ? errors.emoji.msg : "" %></div>
+
                 <label for="price">Price</label>
-                <input type="text" name="price" value="<%= product.price %>">
+                <input type="number" name="price" step="0.01" value="<%= locals.fields ? fields.price : product.price %>">
+                <div class="error"><%= locals.errors && "price" in locals.errors ? errors.price.msg : "" %></div>
+
                 <label for="quantity">Quantity</label>
-                <input type="text" name="quantity" value="<%= product.quantity %>">
+                <input type="number" name="quantity" value="<%= locals.fields ? fields.quantity  : product.quantity %>">
+                <div class="error"><%= locals.errors && "quantity" in locals.errors ? errors.quantity.msg : "" %></div>
+
                 <label for="categoryId">Category</label>
                 <select name="categoryId">
-                    <option value="" disabled <%= product.category ? "" : "selected" %>>Select</option>
+                    <option value="" disabled selected>Select</option>
                     <% categories.forEach(category => { %>
-                        <option value="<%= category.id %>" <%= category.name == product.category ? "selected" : "" %>><%= category.name %></option>
+                        <% let selected = category.name == product.category ? "selected" : "" %>
+                        <% if (locals.fields) selected = category.id == fields.categoryId ? "selected" : "" %>
+                        <option value="<%= category.id %>" <%= selected %>><%= category.name %></option>
                     <% }) %>
                 </select>
-                <button>Submit</button>
-            </form>
-            <a href="/products/<%= product.id %>" class="button">Back</a>
-            <form action="/products/<%= product.id %>/delete" method="POST">
-                <button onClick="() => alert('Are you sure you want to delete this item?')">Delete</button>
+                <div class="error"><%= locals.errors && "categoryId" in locals.errors ? errors.categoryId.msg : "" %></div>
+
+                <div class="buttonContainer">
+                    <button>Submit</button>
+                    <a href="/products/<%= product.id %>" class="button secondary">Cancel</a>
+                </div>
+                
+                <form action="/" method="GET">
+                    <button onClick="() => alert('Are you sure you want to delete this item?')" class="delete">Delete</button>
+                </form>
             </form>
         </main>
     </body>
