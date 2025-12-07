@@ -8,7 +8,6 @@
         <main>
             <h2>🔧 Edit category</h2>
             <form action="/categories/<%= category.id %>/edit" method="POST" class="main">
-                <% console.log(category) %>
                 <label for="name">Name</label>
                 <input type="text" name="name" value="<%= locals.fields ? fields.name : category.name %>">
                 <div class="error"><%= locals.errors && "name" in locals.errors ? errors.name.msg : "" %></div>

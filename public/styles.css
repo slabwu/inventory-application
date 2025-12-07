@@ -183,7 +183,7 @@ table .category {
     transition: all 0.2s ease;
 }
 
-table .category:hover {
+.categoriesList .category:hover {
     transform: translateY(-4px) scale(1.04);
     background-color: orangered;
 }
@@ -437,7 +437,7 @@ main {
     align-items: center;
 }
 
-form.main {
+form.main, .productDetails {
     background-color: white;
     padding: 20px;
     border-radius: 20px;
@@ -533,4 +533,35 @@ button.delete {
     font-weight: normal;
     font-size: 20px;
     margin: 170px 0 40px;
+}
+
+.productDetails {
+    height: 450px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.productDetails .button {
+    padding: 10px 40px 10px;
+}
+
+.productDetails .emoji {
+    font-size: 200px;
+    margin: -10px 0 -20px;
+}
+
+.productDetails table {
+    width: 94%;
+    margin-bottom: 24px;
+}
+
+.productDetails td {
+    padding: 6px 0 6px;
+}
+
+.productDetails td:nth-child(1) {
+    font-weight: bold;
 }

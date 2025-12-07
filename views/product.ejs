@@ -6,20 +6,36 @@
     <body>
         <%- include('header') %>
         <main>
-            <h2><%= product.name %></h2>
-                <div class="productCard">
-                    <div class="emoji"><%= product.emoji %></div>
-                    <div class="name"><%= product.name %></div>
-                    <div class="category"><%= product.category ? product.category : 'Uncategorised' %></div>
-                    <div class="details">
-                        <div class="price">$<%= product.price %></div>
-                        <div class="quantity"><%= product.quantity %> QTY</div>
-                    </div>
+            <h2>🛍️ Product Details</h2>
+            <section class="productDetails">
+                <div class="emoji"><%= product.emoji %></div>
+                <table>
+                    <tr>
+                        <td>🔍︎ Name:</td>
+                        <td><%= product.name %></td>
+                    </tr>
+                    <tr>
+                        <td>🏷️ Category:</td>
+                        <td>
+                            <div class="category">
+                                <%= product.category ? product.category : 'Uncategorised' %>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>💰 Price:</td>
+                        <td>$<%= product.price %></td>
+                    </tr>
+                    <tr>
+                        <td>📊 Quantity:</td>
+                        <td><%= product.quantity %></td>
+                    </tr>
+                </table>
+                <div class="buttonContainer">
+                    <a href="/products/<%= product.id %>/edit" class="button">Edit</a>
+                    <a href="/products" class="button secondary">Back</a>
                 </div>
-            <a href="/products/<%= product.id %>/edit" class="button">
-                <span class="material-icons">edit</span>
-            </a>
-            <a href="/products" class="button">Back</a>
+            </section>
         </main>
     </body>
 </html>
