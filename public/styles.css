@@ -19,6 +19,7 @@ button, .button {
     transition: all 0.2s ease;
     cursor: pointer;
     box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 button:hover, .button:hover {
@@ -519,7 +520,8 @@ button.delete {
     text-underline-offset: 4px;
     background-color: transparent;
     box-shadow: none;
-    margin: -10px 0 0;
+    margin: -14px 0 0;
+    padding-bottom: 0;
 }
 
 .notFound {
@@ -579,5 +581,61 @@ header {
 }
 
 main {
-    margin: 90px 14px 100px 0;
+    margin: 90px 0 80px;
+}
+
+main.margin {
+    margin-bottom: 0;
+}
+
+main.products {
+    margin-right: 14px;
+}
+
+h2 {
+    text-align: center;
+}
+
+@media screen and (max-width: 820px) {
+  form.search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .categoriesList td:nth-child(4), .categoriesList th:nth-child(4) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .categoriesList td:nth-child(2), .categoriesList th:nth-child(2),
+  .categoriesList td:nth-child(3), .categoriesList th:nth-child(3) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  header h1 {
+    font-size: 20px;
+  }
+  main {
+    margin-top: 60px;
+  }
+  .inventory h2 {
+    display: none;
+  }
+  .inventory div {
+    margin: 24.9px 0 24.9px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  header h1 {
+    display: none;
+  }
+  header {
+    height: 53.297px;
+    padding-left: 0;
+  }
 }
