@@ -1,5 +1,6 @@
 const db = require('../db/queries')
 const { body, validationResult, matchedData } = require("express-validator")
+require('dotenv').config()
 
 const validateUser = [
     body('name').trim()
@@ -88,7 +89,7 @@ const getProduct = async (req, res) => {
 const getEditProduct = async (req, res) => {
     let product = await db.getProduct(req.params.productId)
     let categories = await db.getCategories()
-    res.render('editProduct', { product: product, categories: categories })
+    res.render('editProduct', { product: product, categories: categories, admin: process.env.ADMIN })
 }
 
 const editProduct = async (req, res) => {
@@ -97,7 +98,7 @@ const editProduct = async (req, res) => {
     if (!errors.isEmpty()) {
         let categories = await db.getCategories()
         let fields = matchedData(req, { onlyValidData: false })
-        return res.status(400).render('editProduct', { errors: errors.mapped(), categories: categories, fields: fields, product: product })
+        return res.status(400).render('editProduct', { errors: errors.mapped(), categories: categories, fields: fields, product: product, admin: process.env.ADMIN })
     }
     await db.editProduct({ ...req.body, id: req.params.productId})
     res.redirect(`/products/${req.params.productId}`)

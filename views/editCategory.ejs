@@ -15,12 +15,12 @@
                     <button>Submit</button>
                     <a href="/categories" class="button secondary">Cancel</a>
                 </div>
-                <% if (category.id > 12) { %>
-                    <form action="/categories/<%= category.id %>/delete" method="POST">
-                        <button class="delete">Delete</button>
-                    </form>
-                <% } %>
             </form>
+            <% if (category.id > 12) { %>
+                <form action="/categories/<%= category.id %>/delete" method="POST">
+                    <button class="delete">Delete</button>
+                </form>
+            <% } %>
         </main>
     </body>
 </html>

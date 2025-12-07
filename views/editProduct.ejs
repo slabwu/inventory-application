@@ -39,11 +39,23 @@
                     <button>Submit</button>
                     <a href="/products/<%= product.id %>" class="button secondary">Cancel</a>
                 </div>
-                
-                <form action="/" method="GET">
-                    <button onClick="() => alert('Are you sure you want to delete this item?')" class="delete">Delete</button>
-                </form>
+            </form>
+            <form action="/products/<%= product.id %>/delete" method="POST" id="deleteForm">
+                <button onclick="validateUser(event)" class="delete" type="button">Delete</button>
             </form>
         </main>
+
+        <script>
+            function validateUser(e) {
+                e.preventDefault()
+                let password = prompt("Please enter the admin password to delete this item.")
+                if (password === '<%= admin %>') {
+                    document.getElementById("deleteForm").submit()
+                    console.log('done')
+                } else if (password !== null) {
+                    alert('Password incorrect.')
+                }
+            }
+        </script>
     </body>
 </html>
