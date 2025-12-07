@@ -84,6 +84,7 @@ button:hover, .button:hover {
     gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(200px, max-content));
     justify-content: center;
+    width: 100%;
 }
 
 input, select {
@@ -133,24 +134,37 @@ a.secondary, div.secondary {
 }
 
 .categoriesList {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    border-collapse: separate;
+    border-spacing: 15px;
+    text-align: left;
+    border-collapse: collapse;
 }
+
+tr {
+  border-top: 1px solid whitesmoke;
+}
+
+tr:first-child {
+  border-top: none;
+}
+
+th, td {
+  border: none;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
 
 .category {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 200px;
-}
-
-.category div:nth-child(1) {
     background-color: coral;
     color: white;
     padding: 2px 10px 2px;
     border-radius: 20px;
     font-size: 16px;
+    width: fit-content;
 }
 
 header {
@@ -394,4 +408,77 @@ label.checkboxContainer {
 
 label.checkboxContainer:nth-child(2) {
     margin-top: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form.main {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+
+form.main input, form.main select {
+    background-color: rgb(251, 251, 251);
+}
+
+.bento {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bentoCard {
+    background-color: coral;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.bentoCard:hover {
+    transform: scale(1.04);
+}
+
+.bentoCard:nth-child(2) {
+    background-color: orangered;
+}
+
+.bentoCard div:nth-child(1) {
+    font-size: 120px;
+}
+
+.bentoCard div:nth-child(2) {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.bentoCard div:nth-child(3) {
+    font-size: 20px;
+}
+
+p {
+    font-size: 20px;
+    margin: 0 0 40px;
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
 }

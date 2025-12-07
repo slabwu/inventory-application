@@ -11,7 +11,7 @@ async function getInventoryInfo() {
 
     products.forEach(product => {
         inventory.quantity += Number(product.quantity)
-        inventory.value += Number(product.price * product.quantity)
+        inventory.value += Number(product.price) * Number(product.quantity)
         inventory.categories[product.category] = (inventory.categories[product.category] ?? 0) + Number(product.quantity)
     })
 
@@ -49,6 +49,28 @@ async function deleteProduct(id) {
     await pool.query('DELETE FROM products WHERE id = $1', [id])
 }
 
+async function getCategoryInfo() {
+    const products = await getProducts()
+    const categories = await getCategories()
+    const inventory = {}
+    
+    categories.forEach(category => {
+        inventory[category.name] = {
+            products: 0,
+            quantity: 0,
+            value: 0
+        }
+    })
+    
+    products.forEach(product => {
+        inventory[product.category].products++
+        inventory[product.category].quantity += Number(product.quantity)
+        inventory[product.category].value += Number(product.price) * Number(product.quantity)
+    })
+    
+    return inventory
+}
+
 async function getCategories() {
     const { rows } = await pool.query('SELECT * FROM categories ORDER BY id')
     return rows
@@ -79,6 +101,7 @@ module.exports = {
     addProduct,
     editProduct,
     deleteProduct,
+    getCategoryInfo,
     getCategories,
     getCategory,
     addCategory,

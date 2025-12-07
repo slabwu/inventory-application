@@ -6,18 +6,29 @@
     <body>
         <%- include('header') %>
         <main>
-            <h2>Overview</h2>
-            <div><%= inventory.products %> products in inventory</div>
-            <div><%= inventory.quantity %> items in total</div>
-            <div>$<%= inventory.value %> worth in valuation</div>
-            <div>Category Breakdown:</div>
-            <ul>
-                <% for (const key in inventory.categories) { %>
-                    <li><%= inventory.categories[key] %> <%= key == "null" ? "uncategorised items" : key.toLowerCase() %></li>
-                <% } %>
-            </ul>
-            <a href="/products" class="button">View Products</a>
-            <a href="/categories" class="button">View Categories</a>
+            <h2>📦 Welcome to Emojitory!</h2>
+            <p>Emojitory is a public inventory management system.</p>
+            <section class="bento">
+                <div class="bentoCard">
+                    <div>🛍️</div>
+                    <div><%= inventory.products %></div>
+                    <div>products in inventory</div>
+                </div>
+                <div class="bentoCard">
+                    <div>📝</div>
+                    <div><%= inventory.quantity %></div>
+                    <div>items in total</div>
+                </div>
+                <div class="bentoCard">
+                    <div>💵</div>
+                    <div>$<%= inventory.value.toFixed(2) %></div>
+                    <div>worth in valuation</div>
+                </div>
+            </section>
+            <div class="buttonContainer">
+                <a href="/products" class="button">View Products</a>
+                <a href="/categories" class="button secondary">View Categories</a>
+            </div>
         </main>
     </body>
 </html>

@@ -6,22 +6,40 @@
     <body>
         <%- include('header') %>
         <main>
-            <h2>Categories</h2>
-            <section class="categoriesList">
-                <% if (locals.categories ) { %>
-                    <% categories.forEach(category => { %>
-                        <div class="category">
-                            <div><%= category.name %></div>
+            <div class="title">
+                <h2>Categories</h2>
+                <a href="/products/add" class="button iconButton">
+                    <span class="material-icons">add</span>
+                </a>
+            </div>
+            <table class="categoriesList">
+                <tr>
+                    <th>Name</th>
+                    <th>Products</th>
+                    <th>Items</th>
+                    <th>Value</th>
+                    <th></th>
+                </tr>
+                <% categories.forEach(category => { %>
+                    <tr>
+                        <td>
+                            <div class="category">
+                                <%= category.name %>
+                            </div>
+                        </td>
+                        <td><%= inventory[category.name].products %></td>
+                        <td><%= inventory[category.name].quantity %></td>
+                        <td>$<%= inventory[category.name].value.toFixed(2) %></td>
+                        <td>
                             <a href="/categories/<%= category.id %>/edit">
                                 <button class="iconButton">
                                     <span class="material-icons">edit</span>
                                 </button>
                             </a>
-                        </div>
-                    <% }) %>
-                <% } %>
-            </section>
-            <a href="/categories/add" class="button">Add category</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </table>
         </main>
     </body>
 </html>

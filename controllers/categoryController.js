@@ -11,7 +11,8 @@ const postAddCategory = async (req, res) => {
 
 const getCategories = async (req, res) => {
     let categories = await db.getCategories()
-    res.render('categories', { categories: categories })
+    let inventory = await db.getCategoryInfo()
+    res.render('categories', { categories: categories, inventory: inventory })
 }
 
 const getEditCategory = async (req, res) => {

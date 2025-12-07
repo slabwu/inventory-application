@@ -7,7 +7,7 @@
         <%- include('header') %>
         <main>
             <h2>Add a new product</h2>
-            <form action="/products/add" method="POST">
+            <form action="/products/add" method="POST" class="main">
                 <label for="name">Name</label>
                 <input type="text" name="name">
                 <label for="emoji">Emoji</label>
@@ -23,9 +23,11 @@
                         <option value="<%= category.id %>"><%= category.name %></option>
                     <% }) %>
                 </select>
-                <button>Submit</button>
+                <div class="buttonContainer">
+                    <button>Submit</button>
+                    <a href="/products" class="button secondary">Cancel</a>
+                </div>
             </form>
-            <a href="/products" class="button">Back</a>
         </main>
     </body>
 </html>
