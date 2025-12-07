@@ -5,7 +5,7 @@ require('dotenv').config()
 const validateUser = [
     body('name').trim()
         .notEmpty().withMessage('Name is required.')
-        .isAlpha().withMessage('Name must only contain letters.'),
+        .isAlpha('en-US', { ignore: ' ' }).withMessage('Name must only contain letters.'),
     body('emoji').trim()
         .notEmpty().withMessage('Emoji is required.')
         .matches(/\p{Extended_Pictographic}/u).withMessage('Must be valid emoji.')

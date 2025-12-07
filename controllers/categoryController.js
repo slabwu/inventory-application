@@ -4,7 +4,7 @@ const { body, validationResult, matchedData } = require("express-validator")
 const validateUser = [
     body('name').trim()
         .notEmpty().withMessage('Name is required.')
-        .isAlpha().withMessage('Name must only contain letters.')
+        .isAlpha('en-US', { ignore: ' ' }).withMessage('Name must only contain letters.')
 ]
 
 const getAddCategory = async (req, res) => {
