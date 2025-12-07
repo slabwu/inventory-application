@@ -6,13 +6,16 @@
     <body>
         <%- include('header') %>
         <main>
-            <h2>Add a new category</h2>
-            <form action="/categories/add" method="POST">
+            <h2>🏷️ Add a category</h2>
+            <form action="/categories/add" method="POST" class="main">
                 <label for="name">Name</label>
-                <input type="text" name="name">
-                <button>Submit</button>
+                <input type="text" name="name" value="<%= locals.fields ? fields.name  : "" %>">
+                <div class="error"><%= locals.errors && "name" in locals.errors ? errors.name.msg : "" %></div>
+                <div class="buttonContainer">
+                    <button>Submit</button>
+                    <a href="/categories" class="button secondary">Cancel</a>
+                </div>
             </form>
-            <a href="/categories" class="button">Back</a>
         </main>
     </body>
 </html>

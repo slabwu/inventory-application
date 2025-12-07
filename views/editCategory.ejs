@@ -6,17 +6,22 @@
     <body>
         <%- include('header') %>
         <main>
-            <h2>Edit category</h2>
-            <form action="/categories/<%= category.id %>/edit" method="POST">
+            <h2>🔧 Edit category</h2>
+            <form action="/categories/<%= category.id %>/edit" method="POST" class="main">
                 <% console.log(category) %>
                 <label for="name">Name</label>
-                <input type="text" name="name" value="<%= category.name %>">
-                <button>Submit</button>
+                <input type="text" name="name" value="<%= locals.fields ? fields.name : category.name %>">
+                <div class="error"><%= locals.errors && "name" in locals.errors ? errors.name.msg : "" %></div>
+                <div class="buttonContainer">
+                    <button>Submit</button>
+                    <a href="/categories" class="button secondary">Cancel</a>
+                </div>
+                <% if (category.id > 12) { %>
+                    <form action="/categories/<%= category.id %>/delete" method="POST">
+                        <button class="delete">Delete</button>
+                    </form>
+                <% } %>
             </form>
-            <form action="/categories/<%= category.id %>/delete" method="POST">
-                <button>Delete</button>
-            </form>
-            <a href="/categories" class="button">Back</a>
         </main>
     </body>
 </html>
