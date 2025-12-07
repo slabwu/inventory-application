@@ -6,11 +6,15 @@
     <body>
         <%- include('header', { search: search }) %>
         <main>
-            <div class="productHeader">
-                <h2>Products</h2>
+            <div class="title">
+                <h2>🛒 Inventory</h2>
                 <a href="/products/add" class="button iconButton">
                     <span class="material-icons">add</span>
                 </a>
+                <%- include('sortProducts', { sort: sort }) %>
+                <div class="button iconButton secondary">
+                    <span class="material-icons">filter_alt</span>
+                </div>
             </div>
             <section class="productsList">
                 <% if (locals.products.length ) { %>
@@ -29,10 +33,8 @@
                     <% }) %>
                 <% } %>
             </section>
-            <% if ( locals.products.length ) { %>
-                <a href="/products/add" class="button">Add product</a>
-            <% } else { %>
-                 <div>No products found.</div>
+            <% if ( !locals.products.length ) { %>
+                <div>No products found.</div>
                 <a href="/products" class="button">Back</a>
             <% } %>
         </main>

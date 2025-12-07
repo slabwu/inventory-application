@@ -12,13 +12,35 @@ const postAddProduct = async (req, res) => {
 
 const getProducts = async (req, res) => {
     let search = req.query.search
+    let sort = req.query.sort
     let products
+
     if (search) {
         products = await db.findProducts(search)
     } else {
         products = await db.getProducts()
     }
-    res.render('products', { products: products, search: search })
+
+    if (sort) {
+        products = sortProducts(products, sort)
+    }
+
+    res.render('products', { products: products, search: search, sort: sort })
+}
+
+const sortProducts = (products, sort) => {
+    switch(sort) {
+        case 'nameAsc':
+            return products.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        case 'nameDesc':
+            return products.sort((a,b) => (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0))
+        case 'priceAsc':
+            return products.sort((a,b) => a.price - b.price)
+        case 'priceDesc':
+            return products.sort((a,b) => b.price - a.price)
+        default:
+            return products
+    }
 }
 
 const getProduct = async (req, res) => {

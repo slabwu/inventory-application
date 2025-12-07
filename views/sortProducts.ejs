@@ -1,0 +1,41 @@
+<div class="button iconButton secondary tooltip">
+    <span class="material-icons">sort</span>
+    <span class="tooltiptext">
+        <form action="/products" method="GET" id="sort">
+            <h3>Sort by</h3>
+            
+            <h4>Name</h4>
+            <label class="container">
+                A → Z
+                <input type="radio" name="sort" value="nameAsc" <%= locals.sort == "nameAsc" ? "checked" : "" %>>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                Z → A
+                <input type="radio" name="sort" value="nameDesc" <%= locals.sort == "nameDesc" ? "checked" : "" %>>
+                <span class="checkmark"></span>
+            </label>
+
+            <h4>Price</h4>
+            <label class="container">
+                Low → High
+                <input type="radio" name="sort" value="priceAsc" <%= locals.sort == "priceAsc" ? "checked" : "" %>>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                High → Low
+                <input type="radio" name="sort" value="priceDesc" <%= locals.sort == "priceDesc" ? "checked" : "" %>>
+                <span class="checkmark"></span>
+            </label>
+
+            <button>Apply</button>
+            <button type="button" id="reset">Reset</button>
+        </form>
+    </span>
+ </div>
+
+ <script>
+    document.getElementById("reset").addEventListener("click", () => {
+    const form = document.getElementById("sort")
+    form.querySelectorAll("input[name='sort']").forEach(input => input.checked = false)})
+</script>

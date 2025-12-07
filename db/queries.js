@@ -19,12 +19,12 @@ async function getInventoryInfo() {
 }
 
 async function getProducts() {
-    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id')
+    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id ORDER BY p.id')
     return rows
 }
 
 async function findProducts(search) {
-    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id WHERE p.name ILIKE $1', [`%${search}%`])
+    const { rows } = await pool.query('SELECT p.id, p.name, p.emoji, p.price, p.quantity, c.name AS category FROM products p LEFT JOIN categories c ON p.categoryid = c.id WHERE p.name ILIKE $1 ORDER BY p.id', [`%${search}%`])
     return rows
 }
 
@@ -50,7 +50,7 @@ async function deleteProduct(id) {
 }
 
 async function getCategories() {
-    const { rows } = await pool.query('SELECT * FROM categories')
+    const { rows } = await pool.query('SELECT * FROM categories ORDER BY id')
     return rows
 }
 

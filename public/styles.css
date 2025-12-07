@@ -121,10 +121,15 @@ form button {
     border-radius: 20px;
 }
 
-a.iconButton {
+a.iconButton, div.iconButton {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+a.secondary, div.secondary {
+    color: white;
+    background-color: coral;
 }
 
 .categoriesList {
@@ -195,8 +200,128 @@ main {
     margin-bottom: 20px;
 }
 
-.productHeader {
+.title {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.tooltiptext {
+  position: fixed;
+  visibility: hidden;
+  width: 200px;
+  height: 300px;
+  font-size: 16px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  z-index: 2;
+  width: 130px;
+  top: 100%;
+  left: 50%;
+  margin-left: -90px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+  cursor: default;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: left;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: coral;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: orangered;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+ 	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+label.container {
+    font-size: 16px;
+}
+
+.tooltip h3, .tooltip h4 {
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.tooltip h4 {
+    margin: 10px 0 6px;
+}
+
+.tooltip button {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.tooltip button#reset {
+    background-color: coral;
+}
+
+.tooltip form {
+    gap: 0;
 }
