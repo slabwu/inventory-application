@@ -565,3 +565,19 @@ button.delete {
 .productDetails td:nth-child(1) {
     font-weight: bold;
 }
+
+form.main label {
+    font-weight: bold;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 100;
+    top: 0;
+}
+
+main {
+    margin: 90px 14px 100px 0;
+}
