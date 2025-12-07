@@ -6,23 +6,34 @@
     <body>
         <%- include('header') %>
         <main>
-            <h2>Add a new product</h2>
+            <h2>🛍️ Add a product</h2>
             <form action="/products/add" method="POST" class="main">
                 <label for="name">Name</label>
-                <input type="text" name="name">
+                <input type="text" name="name" value="<%= locals.fields ? fields.name : "" %>">
+                <div class="error"><%= locals.errors && "name" in locals.errors ? errors.name.msg : "" %></div>
+
                 <label for="emoji">Emoji</label>
-                <input type="text" name="emoji">
+                <input type="text" name="emoji" value="<%= locals.fields ? fields.emoji : "" %>">
+                <div class="error"><%= locals.errors && "emoji" in locals.errors ? errors.emoji.msg : "" %></div>
+
                 <label for="price">Price</label>
-                <input type="text" name="price">
+                <input type="number" name="price" step="0.01" value="<%= locals.fields ? fields.price : "" %>">
+                <div class="error"><%= locals.errors && "price" in locals.errors ? errors.price.msg : "" %></div>
+
                 <label for="quantity">Quantity</label>
-                <input type="text" name="quantity">
+                <input type="number" name="quantity" value="<%= locals.fields ? fields.quantity  : "" %>">
+                <div class="error"><%= locals.errors && "quantity" in locals.errors ? errors.quantity.msg : "" %></div>
+
                 <label for="categoryId">Category</label>
                 <select name="categoryId">
                     <option value="" disabled selected>Select</option>
                     <% categories.forEach(category => { %>
-                        <option value="<%= category.id %>"><%= category.name %></option>
+                        <% let selected = locals.fields && category.id == fields.categoryId ? "selected" : "" %>
+                        <option value="<%= category.id %>" <%= selected %>><%= category.name %></option>
                     <% }) %>
                 </select>
+                <div class="error"><%= locals.errors && "categoryId" in locals.errors ? errors.categoryId.msg : "" %></div>
+
                 <div class="buttonContainer">
                     <button>Submit</button>
                     <a href="/products" class="button secondary">Cancel</a>

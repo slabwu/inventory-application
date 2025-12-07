@@ -1,4 +1,5 @@
 const db = require('../db/queries')
+const { body, validationResult, matchedData } = require("express-validator")
 
 const getAddCategory = async (req, res) => {
     res.render('addCategory')

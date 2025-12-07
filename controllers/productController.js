@@ -1,14 +1,41 @@
 const db = require('../db/queries')
+const { body, validationResult, matchedData } = require("express-validator")
 
 const getAddProduct = async (req, res) => {
     let categories = await db.getCategories()
     res.render('addProduct', { categories: categories})
 }
 
-const postAddProduct = async (req, res) => {
-    await db.addProduct(req.body)
+const addProduct = async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let categories = await db.getCategories()
+        let fields = matchedData(req, { onlyValidData: false })
+        return res.status(400).render('addProduct', { errors: errors.mapped(), categories: categories, fields: fields })
+    }
+    await db.addProduct(matchedData(req))
     res.redirect('/products')
 }
+
+const validateUser = [
+    body('name').trim()
+        .notEmpty().withMessage('Name is required.')
+        .isAlpha().withMessage('Name must only contain letters.'),
+    body('emoji').trim()
+        .notEmpty().withMessage('Emoji is required.')
+        .matches(/\p{Extended_Pictographic}/u).withMessage('Must be valid emoji.')
+        .isLength({ min: 1, max: 1 }).withMessage('Emoji must be one character only.'),
+    body('price').trim()
+        .notEmpty().withMessage('Price is required.')
+        .isFloat({ min: 0.01 }).withMessage('Price must be a positive decimal.'),
+    body('quantity').trim()
+        .notEmpty().withMessage('Quantity is required.')
+        .isInt({ min: 1 }).withMessage('Quantity must be a positive integer.'),
+    body('categoryId').trim()
+        .notEmpty().withMessage('Category is required.')
+]
+
+const postAddProduct = [ validateUser, addProduct ]
 
 const getProducts = async (req, res) => {
     let search = req.query.search
