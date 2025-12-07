@@ -1,0 +1,25 @@
+<div class="button iconButton secondary tooltip">
+    <span class="material-icons">filter_alt</span>
+    <span class="tooltiptext">
+        <form action="/products" method="GET" id="filter">
+            <h3>Filter by</h3>
+            
+            <% categories.forEach(category => { %>
+                <label class="checkboxContainer">
+                    <%= category.name %>
+                    <input type="checkbox" name="c" value="<%= category.name %>" <%= locals.filter && locals.filter.includes(category.name) ? "checked" : "" %>>
+                    <span class="checkbox"></span>
+                </label>
+            <% }) %>
+
+            <button>Apply</button>
+            <button type="button" id="resetFilter">Reset</button>
+        </form>
+    </span>
+ </div>
+
+ <script>
+    document.getElementById("resetFilter").addEventListener("click", () => {
+    const form = document.getElementById("filter")
+    form.querySelectorAll("input[name='c']").forEach(input => input.checked = false)})
+</script>

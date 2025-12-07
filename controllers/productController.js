@@ -13,7 +13,9 @@ const postAddProduct = async (req, res) => {
 const getProducts = async (req, res) => {
     let search = req.query.search
     let sort = req.query.sort
+    let filter = req.query.c
     let products
+    let categories = await db.getCategories()
 
     if (search) {
         products = await db.findProducts(search)
@@ -25,7 +27,11 @@ const getProducts = async (req, res) => {
         products = sortProducts(products, sort)
     }
 
-    res.render('products', { products: products, search: search, sort: sort })
+    if (filter) {
+        products = filterProducts(products, filter)
+    }
+
+    res.render('products', { products: products, search: search, sort: sort, filter: filter, categories: categories })
 }
 
 const sortProducts = (products, sort) => {
@@ -41,6 +47,10 @@ const sortProducts = (products, sort) => {
         default:
             return products
     }
+}
+
+const filterProducts = (products, filter) => {
+    return products.filter(product => filter.includes(product.category))
 }
 
 const getProduct = async (req, res) => {

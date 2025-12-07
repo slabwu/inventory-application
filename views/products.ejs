@@ -12,9 +12,7 @@
                     <span class="material-icons">add</span>
                 </a>
                 <%- include('sortProducts', { sort: sort }) %>
-                <div class="button iconButton secondary">
-                    <span class="material-icons">filter_alt</span>
-                </div>
+                <%- include('filterProducts', { filter: filter, categories: categories }) %>
             </div>
             <section class="productsList">
                 <% if (locals.products.length ) { %>
