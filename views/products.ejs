@@ -32,8 +32,10 @@
                 <% } %>
             </section>
             <% if ( !locals.products.length ) { %>
-                <div>No products found.</div>
-                <a href="/products" class="button">Back</a>
+                <div class="notFound">
+                    <h3>⚠️ No products found.</h3>
+                    <a href="/products" class="button">Back to all products</a>
+                </div>
             <% } %>
         </main>
     </body>
