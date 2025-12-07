@@ -12,34 +12,36 @@
                     <span class="material-icons">add</span>
                 </a>
             </div>
-            <table class="categoriesList">
-                <tr>
-                    <th>Name</th>
-                    <th>Products</th>
-                    <th>Items</th>
-                    <th>Value</th>
-                    <th></th>
-                </tr>
-                <% categories.forEach(category => { %>
+            <div class="categoriesContainer">
+                <table class="categoriesList">
                     <tr>
-                        <td>
-                            <a href="/products?c=<%= category.name %>" class="category">
-                                <%= category.name %>
-                            </a>
-                        </td>
-                        <td><%= inventory[category.name].products %></td>
-                        <td><%= inventory[category.name].quantity %></td>
-                        <td>$<%= inventory[category.name].value.toFixed(2) %></td>
-                        <td>
-                            <a href="/categories/<%= category.id %>/edit">
-                                <button class="iconButton">
-                                    <span class="material-icons">edit</span>
-                                </button>
-                            </a>
-                        </td>
+                        <th>Name</th>
+                        <th>Products</th>
+                        <th>Items</th>
+                        <th>Value</th>
+                        <th></th>
                     </tr>
-                <% }) %>
-            </table>
+                    <% categories.forEach(category => { %>
+                        <tr>
+                            <td>
+                                <a href="/products?c=<%= category.name %>" class="category">
+                                    <%= category.name %>
+                                </a>
+                            </td>
+                            <td><%= inventory[category.name].products %></td>
+                            <td><%= inventory[category.name].quantity %></td>
+                            <td>$<%= inventory[category.name].value.toFixed(2) %></td>
+                            <td>
+                                <a href="/categories/<%= category.id %>/edit">
+                                    <button class="iconButton">
+                                        <span class="material-icons">edit</span>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
         </main>
     </body>
 </html>
