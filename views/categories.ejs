@@ -7,7 +7,7 @@
         <%- include('header') %>
         <main>
             <div class="title">
-                <h2>Categories</h2>
+                <h2>🏷️ Categories</h2>
                 <a href="/categories/add" class="button iconButton">
                     <span class="material-icons">add</span>
                 </a>
@@ -23,9 +23,9 @@
                 <% categories.forEach(category => { %>
                     <tr>
                         <td>
-                            <div class="category">
+                            <a href="/products?c=<%= category.name %>" class="category">
                                 <%= category.name %>
-                            </div>
+                            </a>
                         </td>
                         <td><%= inventory[category.name].products %></td>
                         <td><%= inventory[category.name].quantity %></td>
